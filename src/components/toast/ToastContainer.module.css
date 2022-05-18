@@ -1,0 +1,49 @@
+.toast-container-bottom-center,
+.toast-container-bottom-left,
+.toast-container-bottom-right,
+.toast-container-center,
+.toast-container-top-center,
+.toast-container-top-left,
+.toast-container-top-right {
+  position: fixed;
+  --toast-size-xy: 30px;
+  --toast-space-x: var(--toast-margin-x, var(--toast-size-xy));
+  --toast-space-y: var(--toast-margin-y, var(--toast-size-xy));
+  --toast-space-gap: var(--toast-margin-gap, 5px);
+  width: var(--toast-container-width, auto);
+}
+.toast-container-bottom-center,
+.toast-container-bottom-left,
+.toast-container-bottom-right {
+  bottom: var(--toast-space-y);
+}
+.toast-container-bottom-center,
+.toast-container-top-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.toast-container-bottom-left,
+.toast-container-top-left {
+  left: var(--toast-space-x);
+}
+.toast-container-bottom-right,
+.toast-container-top-right {
+  right: var(--toast-space-x);
+}
+.toast-container-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.toast-container-top-center,
+.toast-container-top-left,
+.toast-container-top-right {
+  top: var(--toast-space-y);
+}
+.toast-group {
+  position: relative;
+  padding: 0;
+}
+.toast-group-item {
+  margin-top: var(--toast-space-gap);
+}

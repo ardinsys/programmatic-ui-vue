@@ -1,0 +1,16 @@
+/* 1. declare transition */
+.toast-fade-move,
+.toast-fade-enter-active,
+.toast-fade-leave-active {
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+}
+/* 2. declare enter from and leave to state */
+.toast-fade-enter-from,
+.toast-fade-leave-to {
+  opacity: 0;
+}
+/* 3. ensure leaving items are taken out of layout flow so that moving
+       animations can be calculated correctly. */
+.toast-fade-leave-active {
+  position: absolute;
+}
