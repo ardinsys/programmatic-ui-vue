@@ -5,9 +5,12 @@ import { DialogContainer } from "./components/dialog/DialogContainer";
 import { useToasts } from "./hooks/useToasts";
 import { ToastALignment } from "./plugin/programmatic-toasts";
 import { useDialogs } from "./hooks/useDialogs";
+import { SpinnerContainer } from "./components/spinner/SpinnerContainer";
+import { useSpinner } from "./hooks/useSpinner";
 
 const toasts = useToasts();
 const dialogs = useDialogs();
+const spinner = useSpinner();
 
 let toast: any = null;
 
@@ -68,26 +71,41 @@ async function toastTest() {
 
 onMounted(async () => {
   // toastTest();
-  const toast = toasts.show({
-    autoClose: false,
-    props: {
-      thisWillBeInjectedAsProp: "Hello there",
-    },
-  });
+  // const toast = toasts.show({
+  //   autoClose: false,
+  //   props: {
+  //     thisWillBeInjectedAsProp: "Hello there",
+  //   },
+  // });
 
-  const dialog = dialogs.show({
-    aria: {
-      "aria-labelledby": "test",
+  // const dialog = dialogs.show({
+  //   aria: {
+  //     "aria-labelledby": "test",
+  //   },
+  // });
+  // setTimeout(() => {
+  //   dialogs.show({
+  //     type: "info",
+  //     props: {
+  //       myReactiveProp: "Hello world!",
+  //     },
+  //   });
+  // }, 100);
+
+  spinner.show({
+    type: "should fallback",
+    props: {
+      test: "Hello world!",
     },
   });
   setTimeout(() => {
-    dialogs.show({
-      type: "info",
-      props: {
-        myReactiveProp: "Hello Word!",
-      },
+    spinner.updateProps({
+      test: "reactive prop update",
     });
-  }, 100);
+    // setTimeout(() => {
+    //   spinner.hide();
+    // }, 3000);
+  }, 1000);
 });
 </script>
 
@@ -95,14 +113,11 @@ onMounted(async () => {
   <main style="margin: auto; width: fit-content">
     <h1>Programmatic Notifications</h1>
     <!-- <input type="text" placeholder="focusable input" autofocus /> -->
-    <p v-for="(_, i) in Array.from({ length: 30 })" :key="i" style="max-width: 80ch">
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus doloremque ipsam eveniet
-      sunt voluptatem? Sit doloribus excepturi quos perferendis aut voluptate nisi, voluptatibus
-      assumenda temporibus, reprehenderit perspiciatis, dolor expedita eaque!
-    </p>
+    <div style="max-width: 80ch"></div>
   </main>
   <DialogContainer />
   <ToastContainer />
+  <SpinnerContainer />
 </template>
 
 <style>

@@ -5,10 +5,14 @@ import App from "./App.vue";
 import TestToast from "./test-components/TestToast.vue";
 // @ts-ignore
 import TestDialog from "./test-components/TestDialog.vue";
+// @ts-ignore
+import TestSpinner from "./test-components/TestSpinner.vue";
 import { createProgrammaticToast, ToastDefaultOptions } from "./plugin/programmatic-toasts";
 import { createProgrammaticDialog, DialogDefaultOptions } from "./plugin/programmatic-dialogs";
+import { createProgrammaticSpinner, SpinnerDefaultOptions } from "./plugin/programmatic-spinner";
 import "./css/toast.css";
 import "./css/dialog.css";
+import "./css/spinner.css";
 
 const options: ToastDefaultOptions = {
   component: TestToast,
@@ -54,7 +58,16 @@ const dialogOptions: DialogDefaultOptions = {
   // backdropColor: "purple",
 };
 
+const spinnerOptions: SpinnerDefaultOptions = {
+  type: "hello",
+  props: {
+    test: "test",
+  },
+  component: TestSpinner,
+};
+
 createApp(App)
   .use(createProgrammaticToast(options))
   .use(createProgrammaticDialog(dialogOptions))
+  .use(createProgrammaticSpinner(spinnerOptions))
   .mount("#app");

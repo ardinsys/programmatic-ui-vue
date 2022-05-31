@@ -1,8 +1,8 @@
 # Programmatic UI
 
-**Show and hide your toasts and dialogs from your JS/TS code, while you leverage all of Vue 3 reactivity and component system.**
+**Show and hide your toasts, spinners and dialogs from your JS/TS code, while you leverage all of Vue 3 reactivity and component system.**
 
-You don't need to declare hidden dialogs and toasts in your component templates which may never be opened anyways. You aren't limited to toasts that just display some text with a predefined design and positioning. Create your own dialog and toast components, register them into the plugin and use them with the built in type support.
+You don't need to declare hidden dialogs, spinners and toasts in your component templates which may never be opened anyways. You aren't limited to toasts that just display some text with a predefined design and positioning. Create your own dialog, spinner and toast components, register them into the plugin and use them with the built in type support.
 
 ## Features
 
@@ -29,6 +29,7 @@ import "@ardinsys/programmatic-ui-vue/dist/styles.css";
 createApp(App)
   .use(createProgrammaticToast(toastOptions))
   .use(createProgrammaticDialog(dialogOptions))
+  .use(createProgrammaticSpinner(spinnerOptions))
   .mount("#app");
 ```
 
@@ -39,18 +40,20 @@ Add the render components at the end of your **App.vue** component.
 ```tsx
 <DialogContainer />
 <ToastContainer />
+<SpinnerContainer />
 ```
 
-### 4. Use dialogs and toasts
+### 4. Use dialogs, spinners and toasts
 
 ```ts
 const dialogs = useDialogs();
 const toasts = useToasts();
+const spinner = useSpinner();
 
 const dialog = dialogs.show({
   type: "info",
   props: {
-    myReactiveProp: "Hello Word!",
+    myReactiveProp: "Hello World!",
   },
 });
 
@@ -58,7 +61,14 @@ const toast = toasts.show({
   position: "bottom-right",
   autoClose: false,
   props: {
-    myReactiveProp: "Hello Word!",
+    myReactiveProp: "Hello World!",
+  },
+});
+
+spinner.show({
+  type: "my-little-spinner",
+  props: {
+    myReactiveProp: "Hello World!",
   },
 });
 ```
@@ -243,6 +253,44 @@ export interface DialogDefaultOptions extends DialogOptions {
   componentDefinitions?: Record<string | symbol, DefineComponent<{}, {}, any>>;
   /**
    * Animation that will be used by Vue TransitionGroup
+   */
+  animationName?: string;
+}
+```
+
+### 3. Spinners
+
+```ts
+export interface SpinnerOptions {
+  /**
+   * These props will be passed down to your component.
+   * If props where defined in default options, then a shallow merge will be created.
+   */
+  props?: Record<string | number | symbol, any>;
+  /**
+   * Give a type to your spinner. Will be used when determining which component
+   * should be injected from componentDefinitions.
+   */
+  type?: string;
+}
+
+export interface SpinnerDefaultOptions extends SpinnerOptions {
+  /**
+   * Default component to be used.
+   */
+  component: DefineComponent<{}, {}, any>;
+  /**
+   * Separate injected component based on type.
+   * @example
+   * {
+   *    loading1: Spinner1Component
+   *    loading2: Spinner2Component
+   * }
+   */
+  componentDefinitions?: Record<string | symbol, DefineComponent<{}, {}, any>>;
+  /**
+   * Animation name which will be passed directly to the Transition component.
+   * It's "dialog-fade" by default.
    */
   animationName?: string;
 }
