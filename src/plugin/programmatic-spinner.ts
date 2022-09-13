@@ -1,4 +1,4 @@
-import { DefineComponent, Plugin, reactive } from "vue";
+import { DefineComponent, inject, Plugin, reactive } from "vue";
 
 export interface SpinnerOptions {
   /**
@@ -44,6 +44,12 @@ export interface SpinnerInjectionData {
 
 export const spinnerKey = Symbol("spinner-injection-key");
 
+let injectionData: SpinnerInjectionData;
+
+export function injectSpinner() {
+  return injectionData || inject<SpinnerInjectionData>(spinnerKey);
+}
+
 export function createProgrammaticSpinner(options: SpinnerDefaultOptions): Plugin {
   return {
     install: (app) => {
@@ -51,7 +57,9 @@ export function createProgrammaticSpinner(options: SpinnerDefaultOptions): Plugi
         visible: false,
       });
 
-      app.provide<SpinnerInjectionData>(spinnerKey, { store, options });
+      injectionData = { store, options };
+
+      app.provide(spinnerKey, injectionData);
     },
   };
 }

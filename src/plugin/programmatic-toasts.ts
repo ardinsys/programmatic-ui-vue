@@ -1,4 +1,4 @@
-import { DefineComponent, Plugin, reactive } from "vue";
+import { DefineComponent, inject, Plugin, reactive } from "vue";
 
 export type ToastALignment =
   | "top-left"
@@ -88,6 +88,12 @@ export interface ToastItem extends ToastOptions {
 export const toastKey = Symbol("toast-injection-key");
 export const singleToastKey = Symbol("single-toast-key");
 
+let injectionData: ToastInjectionData;
+
+export function injectToasts() {
+  return injectionData || inject<ToastInjectionData>(toastKey);
+}
+
 export function createProgrammaticToast(options: ToastDefaultOptions): Plugin {
   return {
     install: (app) => {
@@ -96,7 +102,9 @@ export function createProgrammaticToast(options: ToastDefaultOptions): Plugin {
         autoRemovedToasts: [] as ToastItem[],
       });
 
-      app.provide<ToastInjectionData>(toastKey, { options, store });
+      injectionData = { options, store };
+
+      app.provide<ToastInjectionData>(toastKey, injectionData);
     },
   };
 }

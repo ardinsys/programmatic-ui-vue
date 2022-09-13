@@ -1,18 +1,17 @@
 import { createApp } from "vue";
-// @ts-ignore
 import App from "./App.vue";
-// @ts-ignore
 import TestToast from "./test-components/TestToast.vue";
-// @ts-ignore
 import TestDialog from "./test-components/TestDialog.vue";
-// @ts-ignore
 import TestSpinner from "./test-components/TestSpinner.vue";
 import { createProgrammaticToast, ToastDefaultOptions } from "./plugin/programmatic-toasts";
 import { createProgrammaticDialog, DialogDefaultOptions } from "./plugin/programmatic-dialogs";
 import { createProgrammaticSpinner, SpinnerDefaultOptions } from "./plugin/programmatic-spinner";
+// import { useDialogs } from "./hooks/useDialogs";
+// import { useToasts } from "./hooks/useToasts";
 import "./css/toast.css";
 import "./css/dialog.css";
 import "./css/spinner.css";
+// import { useSpinner } from "./hooks/useSpinner";
 
 const options: ToastDefaultOptions = {
   component: TestToast,
@@ -71,3 +70,25 @@ createApp(App)
   .use(createProgrammaticDialog(dialogOptions))
   .use(createProgrammaticSpinner(spinnerOptions))
   .mount("#app");
+
+// Test if hooks are working outside of a component or not
+// const dialogs = useDialogs();
+// dialogs.show({
+//   type: "info",
+// });
+
+// const toasts = useToasts();
+// toasts.show({
+//   autoClose: false,
+//   props: {
+//     thisWillBeInjectedAsProp: "Hello there",
+//   },
+// });
+
+// const spinner = useSpinner();
+// spinner.show({
+//   type: "should fallback",
+//   props: {
+//     test: "Hello world!",
+//   },
+// });

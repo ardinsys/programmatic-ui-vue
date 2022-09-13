@@ -1,5 +1,4 @@
-import { inject } from "vue";
-import { SpinnerInjectionData, spinnerKey, SpinnerOptions } from "../plugin/programmatic-spinner";
+import { injectSpinner, SpinnerOptions } from "../plugin/programmatic-spinner";
 
 export interface SpinnerController {
   show: (options?: SpinnerOptions) => void;
@@ -8,7 +7,7 @@ export interface SpinnerController {
 }
 
 export function useSpinner(): SpinnerController {
-  const spinnerStore = inject<SpinnerInjectionData>(spinnerKey)!;
+  const spinnerStore = injectSpinner();
   if (!spinnerStore) throw Error("Programmatic spinner plugin must be registered!");
 
   return {

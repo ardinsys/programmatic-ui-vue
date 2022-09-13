@@ -1,4 +1,4 @@
-import { DefineComponent, Plugin, reactive } from "vue";
+import { DefineComponent, inject, Plugin, reactive } from "vue";
 
 export interface DialogOptions {
   /**
@@ -106,6 +106,12 @@ export interface DialogItem extends DialogOptions {
 export const dialogKey = Symbol("dialog-injection-key");
 export const singleDialogKey = Symbol("single-dialog-key");
 
+let injectionData: DialogInjectionData;
+
+export function injectDialogs() {
+  return injectionData || inject<DialogInjectionData>(dialogKey);
+}
+
 export function createProgrammaticDialog(options: DialogDefaultOptions): Plugin {
   return {
     install: (app) => {
@@ -114,7 +120,9 @@ export function createProgrammaticDialog(options: DialogDefaultOptions): Plugin 
         removedDialogs: [],
       });
 
-      app.provide<DialogInjectionData>(dialogKey, { options, store });
+      injectionData = { options, store };
+
+      app.provide(dialogKey, injectionData);
     },
   };
 }

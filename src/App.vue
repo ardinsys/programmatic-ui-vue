@@ -77,35 +77,34 @@ onMounted(async () => {
   //     thisWillBeInjectedAsProp: "Hello there",
   //   },
   // });
-
   // const dialog = dialogs.show({
   //   aria: {
   //     "aria-labelledby": "test",
   //   },
   // });
+  // const dialog = dialogs.show({
+  //   type: "info",
+  //   props: {
+  //     myReactiveProp: "Hello world!",
+  //   },
+  // });
+  // dialog.updateProps({
+  //   myReactiveProp: "Test",
+  // });
+  // spinner.show({
+  //   type: "should fallback",
+  //   props: {
+  //     test: "Hello world!",
+  //   },
+  // });
   // setTimeout(() => {
-  //   dialogs.show({
-  //     type: "info",
-  //     props: {
-  //       myReactiveProp: "Hello world!",
-  //     },
+  //   spinner.updateProps({
+  //     test: "reactive prop update",
   //   });
-  // }, 100);
-
-  spinner.show({
-    type: "should fallback",
-    props: {
-      test: "Hello world!",
-    },
-  });
-  setTimeout(() => {
-    spinner.updateProps({
-      test: "reactive prop update",
-    });
-    // setTimeout(() => {
-    //   spinner.hide();
-    // }, 3000);
-  }, 1000);
+  //   // setTimeout(() => {
+  //   //   spinner.hide();
+  //   // }, 3000);
+  // }, 1000);
 });
 </script>
 

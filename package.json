@@ -1,7 +1,7 @@
 {
   "name": "@ardinsys/programmatic-ui-vue",
   "description": "Show and hide toasts and dialogs programatically in vue 3.",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "files": [
     "README.md",
     "dist"
@@ -26,7 +26,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "prepublishOnly": "npm run build"
   },

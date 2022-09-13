@@ -1,9 +1,9 @@
 import { inject } from "vue";
-import { ToastInjectionData, toastKey, singleToastKey } from "../plugin/programmatic-toasts";
+import { singleToastKey, injectToasts } from "../plugin/programmatic-toasts";
 
 export function useToast() {
   const toastId = inject<string>(singleToastKey)!;
-  const toasts = inject<ToastInjectionData>(toastKey)!;
+  const toasts = injectToasts();
   if (!toasts) throw Error("Programmatic toasts plugin must be registered!");
   if (toastId == undefined)
     throw Error("useToast can only be invoked from a Toast injection component!");

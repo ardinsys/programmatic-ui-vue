@@ -1,14 +1,9 @@
 import { inject } from "vue";
-import {
-  DialogInjectionData,
-  DialogItem,
-  dialogKey,
-  singleDialogKey,
-} from "../plugin/programmatic-dialogs";
+import { DialogItem, injectDialogs, singleDialogKey } from "../plugin/programmatic-dialogs";
 
 export function useDialog() {
   const dialog = inject<DialogItem>(singleDialogKey)!;
-  const dialogs = inject<DialogInjectionData>(dialogKey)!;
+  const dialogs = injectDialogs();
   if (!dialogs) throw Error("Programmatic dialogs plugin must be registered!");
   if (dialog == undefined)
     throw Error("useDialog can only be invoked from a Dialog injection component!");
