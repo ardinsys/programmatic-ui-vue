@@ -27,7 +27,14 @@ export const SpinnerContainer = defineComponent({
       <Transition name={spinner?.options.animationName || "dialog-fade"} appear>
         {spinner.store.visible ? (
           <div
-            style={{ width: "100%", height: "100%", position: "fixed", left: 0, top: 0 }}
+            style={{
+              width: "100%",
+              height: "100%",
+              position: "fixed",
+              left: 0,
+              top: 0,
+              zIndex: 10000,
+            }}
             role="status"
             aria-busy="true"
           >

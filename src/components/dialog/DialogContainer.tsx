@@ -103,7 +103,7 @@ export const DialogContainer = defineComponent({
     }
 
     return () => (
-      <div>
+      <div style="z-index: 10000">
         <TransitionGroup
           name={dialogs.options.animationName || "dialog-fade"}
           onEnter={onOpen}

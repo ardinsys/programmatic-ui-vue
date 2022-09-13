@@ -11,6 +11,7 @@
   --toast-space-y: var(--toast-margin-y, var(--toast-size-xy));
   --toast-space-gap: var(--toast-margin-gap, 5px);
   width: var(--toast-container-width, auto);
+  z-index: 10000;
 }
 .toast-container-bottom-center,
 .toast-container-bottom-left,
