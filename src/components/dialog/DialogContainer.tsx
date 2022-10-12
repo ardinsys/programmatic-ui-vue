@@ -103,7 +103,7 @@ export const DialogContainer = defineComponent({
     }
 
     return () => (
-      <div style="z-index: 10000">
+      <div>
         <TransitionGroup
           name={dialogs.options.animationName || "dialog-fade"}
           onEnter={onOpen}
@@ -113,7 +113,8 @@ export const DialogContainer = defineComponent({
         >
           {dialogs.store.dialogs.map((dialog, i) => {
             return (
-              <Dialog
+              <Dialog 
+                style="z-index: 10000"
                 id={dialog.id}
                 key={dialog.id}
                 dialog={dialog}
