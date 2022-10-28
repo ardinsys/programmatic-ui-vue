@@ -113,7 +113,7 @@ export const DialogContainer = defineComponent({
         >
           {dialogs.store.dialogs.map((dialog, i) => {
             return (
-              <Dialog 
+              <Dialog
                 style="z-index: 10000"
                 id={dialog.id}
                 key={dialog.id}
@@ -123,9 +123,10 @@ export const DialogContainer = defineComponent({
                 closeOnBackdropClick={isCloseOnBackdropClick(dialog)}
                 backdropColor={getBacdropColor(dialog)}
                 aria={getAccessibilityAttrs(dialog)}
-                onClose={() =>
-                  dialogs.store.removedDialogs.push(dialogs.store.dialogs.splice(i, 1)[0])
-                }
+                onClose={() => {
+                  const removeDialog = dialogs.store.dialogs.splice(i, 1)[0];
+                  if (removeDialog) dialogs.store.removedDialogs.push(removeDialog);
+                }}
               />
             );
           })}

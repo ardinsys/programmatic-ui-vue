@@ -10,7 +10,8 @@ export function useDialog() {
 
   function close() {
     const index = dialogs.store.dialogs.findIndex((d) => d.id === dialog.id);
-    dialogs.store.removedDialogs.push(dialogs.store.dialogs.splice(index, 1)[0]);
+    const removeDialog = dialogs.store.dialogs.splice(index, 1)[0];
+    if (removeDialog) dialogs.store.removedDialogs.push(removeDialog);
   }
 
   function isCloseOnCancel() {

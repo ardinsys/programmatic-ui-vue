@@ -82,12 +82,20 @@ onMounted(async () => {
   //     "aria-labelledby": "test",
   //   },
   // });
-  // const dialog = dialogs.show({
-  //   type: "info",
-  //   props: {
-  //     myReactiveProp: "Hello world!",
-  //   },
-  // });
+  for (let i = 0; i < 10; i++) {
+    const dialog = dialogs.show({
+      type: "info",
+      props: {
+        myReactiveProp: "Hello world!",
+      },
+      onClosed() {
+        console.log("Closed ", i);
+      },
+      onClose() {
+        console.log("Closing ", i);
+      },
+    });
+  }
   // dialog.updateProps({
   //   myReactiveProp: "Test",
   // });
