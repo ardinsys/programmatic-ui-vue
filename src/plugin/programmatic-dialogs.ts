@@ -74,7 +74,7 @@ export interface DialogDefaultOptions extends DialogOptions {
    * Default toast component if componentDefinitions is not provided
    * or type key don't match.
    */
-  component: DefineComponent<{}, {}, any>;
+  component: DefineComponent<any, any, any>;
   /**
    * Separate injected component based on type.
    * @example
@@ -84,7 +84,7 @@ export interface DialogDefaultOptions extends DialogOptions {
    *    info: DialogInfoComponent
    * }
    */
-  componentDefinitions?: Record<string | symbol, DefineComponent<{}, {}, any>>;
+  componentDefinitions?: Record<string | symbol, DefineComponent<any, any, any>>;
   /**
    * Animation that will be used by Vue TransitionGroup
    */

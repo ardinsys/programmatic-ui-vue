@@ -56,7 +56,7 @@ export interface ToastDefaultOptions extends ToastOptions {
    * Default toast component if componentDefinitions is not provided
    * or type key doesn't match.
    */
-  component: DefineComponent<{}, {}, any>;
+  component: DefineComponent<any, any, any>;
   /**
    * Separate injected component based on type.
    * @example
@@ -66,7 +66,7 @@ export interface ToastDefaultOptions extends ToastOptions {
    *    info: ToastInfoComponent
    * }
    */
-  componentDefinitions?: Record<string | symbol, DefineComponent<{}, {}, any>>;
+  componentDefinitions?: Record<string | symbol, DefineComponent<any, any, any>>;
   /**
    * Animation which will be used by Vue TransitionGroup
    */

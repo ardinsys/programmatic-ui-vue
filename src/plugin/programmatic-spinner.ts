@@ -17,7 +17,7 @@ export interface SpinnerDefaultOptions extends SpinnerOptions {
   /**
    * Default component to be used.
    */
-  component: DefineComponent<{}, {}, any>;
+  component: DefineComponent<any, any, any>;
   /**
    * Separate injected component based on type.
    * @example
@@ -26,7 +26,7 @@ export interface SpinnerDefaultOptions extends SpinnerOptions {
    *    loading2: Spinner2Component
    * }
    */
-  componentDefinitions?: Record<string | symbol, DefineComponent<{}, {}, any>>;
+  componentDefinitions?: Record<string | symbol, DefineComponent<any, any, any>>;
   /**
    * Animation name which will be passed directly to the Transition component.
    * It's "dialog-fade" by default.
