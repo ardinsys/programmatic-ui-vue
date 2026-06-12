@@ -3,6 +3,7 @@ import { withModifiers } from "vue";
 export function withKeyModifiers(fn: Function, keyModifiers: string[], modifiers?: string[]) {
   const listener = (e: KeyboardEvent) => {
     if (e.key && keyModifiers.includes(e.key)) {
+      e.preventDefault();
       fn(e);
     }
   };

@@ -38,7 +38,7 @@ export function trapFocus(element: HTMLElement): FocusTrap {
   return {
     release: (restoreFocus = true) => {
       element.removeEventListener("keydown", listener);
-      if (restoreFocus) prevFocusedElement?.focus();
+      if (restoreFocus) requestAnimationFrame(() => prevFocusedElement?.focus());
     },
   };
 }
